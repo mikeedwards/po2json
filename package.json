@@ -2,7 +2,7 @@
   "name": "po2json",
   "description": "Pure Javascript implementation of Uniforum message translation.",
   "version": "0.0.1",
-  "homepage": "https://gist.github.com/2884964",
+  "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
     "email": "unrtst@cpan.org"
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://gist.github.com/2884964.git"
+    "url": "git://github.com/mikeedwards/po2json.git"
   },
   "licenses": [
     {
