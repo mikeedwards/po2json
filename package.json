@@ -1,0 +1,44 @@
+{
+  "name": "po2json",
+  "description": "Pure Javascript implementation of Uniforum message translation.",
+  "version": "0.0.1",
+  "homepage": "https://gist.github.com/2884964",
+  "author": {
+    "name": "Joshua I. Miller",
+    "email": "unrtst@cpan.org"
+  },
+  "contributors": [
+    {
+      "name": "Zach Carter",
+      "email": "zcarter@cse.usf.edu"
+    },
+    {
+      "name": "Daniel Roberts",
+      "email": "danielrobertsdesign@gmail.com"
+    },
+    {
+      "name": "Mike Edwards",
+      "email": "michael.edwards@huffingtonpost.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://gist.github.com/2884964.git"
+  },
+  "licenses": [
+    {
+      "type": "GNU Library General Public License",
+      "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html"
+    }
+  ],
+  "bin": {
+    "handlebars-xgettext": "bin/handlebars-xgettext"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "fs": "*",
+    "path": "*"
+  } 
+}
