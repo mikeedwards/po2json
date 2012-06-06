@@ -5,8 +5,8 @@ Pure Javascript implementation of Uniforum message translation.
 
 ## Install
 
-TBD
+npm install po2json
 
 ## Usage
 
-TBD
+po2json translation.po translation.json
