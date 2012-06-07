@@ -38,7 +38,5 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "fs": "*",
-    "path": "*"
   } 
 }
