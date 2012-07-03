@@ -32,7 +32,7 @@
     }
   ],
   "bin": {
-    "handlebars-xgettext": "bin/handlebars-xgettext"
+    "po2json": "bin/po2json"
   },
   "engines": {
     "node": ">=0.6.0"
