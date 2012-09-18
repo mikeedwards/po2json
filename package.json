@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Pure Javascript implementation of Uniforum message translation.",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "./lib/po2json",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
