@@ -1,8 +1,7 @@
 {
   "name": "po2json",
-  "description": "Pure Javascript implementation of Uniforum message translation.",
-  "version": "0.0.4",
-  "main": "./lib/po2json",
+  "description": "Pure Javascript implementation of Uniforum message translation. Based on a great gist.",
+  "version": "0.0.5",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -26,6 +25,9 @@
     "type": "git",
     "url": "git://github.com/mikeedwards/po2json.git"
   },
+  "bugs": {
+    "url": "https://github.com/mikeedwards/po2json/issues"
+  },
   "licenses": [
     {
       "type": "GNU Library General Public License",
@@ -35,9 +37,15 @@
   "bin": {
     "po2json": "bin/po2json"
   },
+  "main": "./lib/po2json",
   "engines": {
-    "node": ">=0.6.0"
+    "node": ">= 0.6.0"
   },
-  "dependencies": {
-  } 
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.16"
+  },
+  "keywords": []
 }
