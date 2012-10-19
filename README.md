@@ -9,7 +9,6 @@ Install the module with: `npm install po2json`
 ### As a library
 ```javascript
 var po2json = require('po2json');
-po2json.awesome(); // "awesome"
 ```
 
 ### As an executable
