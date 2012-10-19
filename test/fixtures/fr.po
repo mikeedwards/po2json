@@ -1,0 +1,3 @@
+#: src/name.js:1
+msgid "My name is John.\n"
+msgstr "My name is Jean.\n"

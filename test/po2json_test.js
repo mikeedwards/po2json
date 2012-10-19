@@ -20,15 +20,30 @@ var po2json = require('../lib/po2json.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
+input = "#: src/name.js:1\nmsgid \"My name is John.\\n\"\nmsgstr \"My name is Jean.\\n\""
+
+expected_result = {
+    "My name is John.\\n": [
+       null,
+       "My name is Jean.\\n"
+    ],
+    "": {}
+ }
+
+
+exports['parse_po'] = {
   setUp: function(done) {
     // setup here
     done();
   },
-  'no args': function(test) {
+  'simple po': function(test) {
+    var result = po2json.parse_po(input);
+    console.log(result)
     test.expect(1);
     // tests here
-    test.equal(po2json.awesome(), 'awesome', 'should be awesome.');
+    test.equal(result["My name is John.\\n"][1],
+      expected_result["My name is John.\\n"][1],
+      ' should match result.');
     test.done();
   }
 };
