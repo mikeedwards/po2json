@@ -13,8 +13,7 @@ po2json.awesome(); // "awesome"
 ```
 
 ### As an executable
-```po2json translation.po translation.json
-```
+```po2json translation.po translation.json```
 
 ## Documentation
 _(Coming soon)_
