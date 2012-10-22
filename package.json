@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Pure Javascript implementation of Uniforum message translation. Based on a great gist.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
