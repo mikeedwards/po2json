@@ -1,4 +1,10 @@
 
+0.0.6 / 2012-10-22 
+==================
+
+  * Add AUTHORS to identify contributors (Dan MacTough)
+  * Update README with revision history and basic examples (Dan MacTough)
+
 0.0.5 / 2012-10-19
 ==================
 
