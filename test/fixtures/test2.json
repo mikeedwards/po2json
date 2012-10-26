@@ -1,0 +1,26 @@
+{
+   "fr": {
+      "": {
+         "Project-Id-Version": "po2json",
+         "POT-Creation-Date": "20012-10-26 12:00+0000",
+         "PO-Revision-Date": "2012-10-26 12:00+0000",
+         "Last-Translator": "Mike Edwards",
+         "Language-Team": "po2json",
+         "MIME-Version": "1.0",
+         "Content-Type": "text/plain; charset=UTF-8",
+         "Content-Transfer-Encoding": "8bit"
+      },
+      "Hello, world!\n": [
+         null,
+         "Bonjour, le monde!\n"
+      ],
+      "string context\u0004the contextual phrase": [
+         null,
+         "la phrase contextuelle"
+      ],
+      "the is the first line\nthis is the next one\nbut this is the last\n": [
+         null,
+         "la est la première ligne\nceci est la suivante\nmais c'est la dernière\n"
+      ]
+   }
+}
