@@ -1,3 +1,29 @@
-#: src/name.js:1
-msgid "My name is John.\n"
-msgstr "My name is Jean.\n"
+# French translation for po2json text fixture.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: po2json\n"
+"POT-Creation-Date: 2012-10-26 12:00+0000\n"
+"PO-Revision-Date: 2012-10-26 12:00+0000\n"
+"Last-Translator: Mike Edwards\n"
+"Language-Team: po2json\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: test.js:1
+msgid "Hello, world!\n"
+msgstr "Bonjour, le monde!\n"
+
+#: test.js:2
+msgctxt "string context"
+msgid "the contextual phrase"
+msgstr "la phrase contextuelle"
+
+#: test.js:3
+msgid "the is the first line\n"
+"this is the next one\n"
+"but this is the last\n"
+msgstr "la est la première ligne\n"
+"ceci est la suivante\n"
+"mais c'est la dernière\n"

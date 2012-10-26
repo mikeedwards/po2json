@@ -33,11 +33,8 @@ var expected_result = {
 var po_file = __dirname + '/fixtures/fr.po';
 
 exports['parse_po'] = {
-  setUp: function(done) {
-    // setup here
-    done();
-  },
   'simple po': function(test) {
+    "use strict";
     var result = po2json.parse_po(input);
     test.expect(1);
     // tests here
@@ -50,26 +47,28 @@ exports['parse_po'] = {
 
 exports['parse'] = {
   'asynchronously parse simple po': function(test) {
+    "use strict";
     test.expect(4);
     po2json.parse(po_file, function (err, result) {
       test.ifError(err);
       test.deepEqual(typeof result['fr'][""], 'object');
-      test.deepEqual(Object.keys(result['fr'][""]).length, 0);
-      test.deepEqual(result['fr']["My name is John.\n"][1], "My name is Jean.\n");
+      test.deepEqual(Object.keys(result['fr'][""]).length, 8);
+      test.deepEqual(result['fr']["Hello, world!\n"][1], "Bonjour, le monde!\n");
       test.done();
     });
   }
 };
 exports['parseSync'] = {
   'synchronously parse simple po': function(test) {
+    "use strict";
     test.expect(4);
     var result;
     test.doesNotThrow(function(){
       result = po2json.parseSync(po_file);
     });
     test.deepEqual(typeof result['fr'][""], 'object');
-    test.deepEqual(Object.keys(result['fr'][""]).length, 0);
-    test.deepEqual(result['fr']["My name is John.\n"][1], "My name is Jean.\n");
+    test.deepEqual(Object.keys(result['fr'][""]).length, 8);
+    test.deepEqual(result['fr']["Hello, world!\n"][1], "Bonjour, le monde!\n");
     test.done();
   }
 };
