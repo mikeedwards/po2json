@@ -42,6 +42,14 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.0.7 / 2012-10-26 
+==================
+
+  * Fixed linting bugs and added a better fr.po fixture (Mike Edwards)
+  * Add tests for po2json.parse and po2json.parseSync (Dan MacTough)
+  * updated README.md with version history (Mike Edwards)
+  * updated history (Mike Edwards)
+
 0.0.6 / 2012-10-22 
 ==================
 
