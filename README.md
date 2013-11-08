@@ -1,7 +1,7 @@
 # po2json
 
 [![Build Status](https://secure.travis-ci.org/mikeedwards/po2json.png?branch=master)](http://travis-ci.org/mikeedwards/po2json)
-Pure Javascript implementation of Uniforum message translation. Based on a great gist.
+Convert PO files to Javascript objects or JSON strings. The result is Jed-compatible.
 
 ## Getting Started
 Install the module with: `npm install po2json`
@@ -15,24 +15,60 @@ var po2json = require('po2json');
 ```po2json translation.po translation.json```
 
 ## Documentation
-_(Coming soon)_
+
+### Methods
+
+po2json has 3 methods, all of which take exactly the same options. The main function is `parse` which actually does the parsing to JSON. The 2 others - `parseFile` and `parseFileSync` are convinience functions to directly read PO data from a file and convert it to JSON.
+
+Parse a PO buffer to JSON
+
+* `po2json.parse(buf[, options])`
+	* `buf` - a _po_ file as a Buffer or an unicode string.
+	* `options` - an optional object with the following possible parameters:
+		* `fuzzy` Whether to include fuzzt translation in JSON or not. Should be either 		`true` or `false`. Defaults to `false`.
+		* `stringify` If `true`, returns a JSON string. Otherwise returns a plain 		Javascript object. Defaults to `false`.
+		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no 		effect when `stringify` is `false`. Defaults to `false`
+
+Parse a PO file to JSON
+
+* `po2json.parseFile(fileName[,options], cb)`
+	* `fileName` - path to the po file
+	* `options` - same as for `po2json.parse`
+	* `cb` - a function that receives 2 arguments: `err` and `jsonData`
+
+Parse a PO file to JSON (synchronous)
+
+* `po2json.parseFileSync(fileName[, options])`
+	* `fileName` - path to the po file
+	* `options` - same as for `po2json.parse`
+
 
 ## Examples
 
-### Asynchronous Usage
+### Basic usage with PO data as a buffer/string
 ```javascript
-var po2json = require('po2json');
-po2json.parse('messages.po', function (err, jsondata) {
-    // do something interesting ...
-})
+var po2json = require('po2json'),
+    fs = require('fs');
+fs.readFile('messages.po', function (err, buffer) {
+  var jsonData = po2json.parse(buffer);
+  // do something interesting ...
+});
 ```
 
-### Synchronous Usage
+### Parse a PO file directly - Asynchronous Usage
 ```javascript
 var po2json = require('po2json');
-var jsondata = '';
+po2json.parseFile('messages.po', function (err, jsonData) {
+    // do something interesting ...
+});
+```
+
+### Parse a PO file directly - Synchronous Usage
+```javascript
+var po2json = require('po2json');
+var jsonData = '';
 try {
-    jsondata = po2json.parseSync('messages.po');
+    jsonData = po2json.parseFileSync('messages.po');
     // do something interesting ...
 } catch (e) {}
 ```
@@ -41,6 +77,22 @@ try {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+
+0.2.0 / 2013-11-08
+==================
+
+**NB! This release is NOT backwards-compatible!** It has the following **braking changes**:
+
+ * `po2json.parse_po` has been replaced with `po2json.parse`
+ * `po2json.parse` has been replaced with `po2json.parseFile`
+ * `po2json.parseSync` has been replaced with `po2json.parseFileSync`
+ 
+Other changes in this release:
+
+  * The library has been competely rewritten, it now uses the [gettext-parser](https://github.com/andris9/gettext-parser) module to parse PO files. (Illimar Tambek)
+  * Tests have been completely rewritten (Illimar Tambek)
+  * Fixed issue with double-escaping quotes (Illimar Tambek)
+  * Option to skip/include fuzzy translations (Illimar Tambek)
 
 0.0.7 / 2012-10-26 
 ==================

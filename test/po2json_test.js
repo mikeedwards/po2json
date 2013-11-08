@@ -1,74 +1,44 @@
-var po2json = require('../lib/po2json.js');
+var po2json = require(".."),
+    fs = require("fs");
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+module.exports["parse"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl.json", "utf-8"));
+    callback();
+  },
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
-
-var input = "#: src/name.js:1\nmsgid \"My name is John.\\n\"\nmsgstr \"My name is Jean.\\n\"";
-
-var expected_result = {
-    "My name is John.\n": [
-       null,
-       "My name is Jean.\n"
-    ],
-    "": {}
-};
-
-var po_file = __dirname + '/fixtures/fr.po';
-
-exports['parse_po'] = {
-  'simple po': function(test) {
-    "use strict";
-    var result = po2json.parse_po(input);
-    test.expect(1);
-    // tests here
-    test.equal(result["My name is John.\n"][1],
-      expected_result["My name is John.\n"][1],
-      ' should match result.');
+  parse: function(test){
+    var parsed = po2json.parse(this.po);
+    test.deepEqual(parsed, this.json);
     test.done();
   }
-};
+}
 
-exports['parse'] = {
-  'asynchronously parse simple po': function(test) {
-    "use strict";
-    test.expect(4);
-    po2json.parse(po_file, function (err, result) {
-      test.ifError(err);
-      test.deepEqual(typeof result['fr'][""], 'object');
-      test.deepEqual(Object.keys(result['fr'][""]).length, 8);
-      test.deepEqual(result['fr']["Hello, world!\n"][1], "Bonjour, le monde!\n");
+module.exports["parseFile"] = {
+  setUp: function(callback){
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl.json", "utf-8"));
+    callback();
+  },
+
+  parseFile: function(test){
+    var self = this;
+    po2json.parseFile(__dirname + "/fixtures/pl.po", null, function (err, parsed) {
+      test.deepEqual(parsed, self.json);
       test.done();
     });
   }
-};
-exports['parseSync'] = {
-  'synchronously parse simple po': function(test) {
-    "use strict";
-    test.expect(4);
-    var result;
-    test.doesNotThrow(function(){
-      result = po2json.parseSync(po_file);
-    });
-    test.deepEqual(typeof result['fr'][""], 'object');
-    test.deepEqual(Object.keys(result['fr'][""]).length, 8);
-    test.deepEqual(result['fr']["Hello, world!\n"][1], "Bonjour, le monde!\n");
+}
+
+module.exports["parseFileSync"] = {
+  setUp: function(callback){
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl.json", "utf-8"));
+    callback();
+  },
+
+  parseFileSync: function(test){
+    var parsed = po2json.parseFileSync(__dirname + "/fixtures/pl.po");
+    test.deepEqual(parsed, this.json);
     test.done();
   }
-};
+}

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var po2json = require('../lib/po2json'),
+var po2json = require('../'),
 	fs = require('fs'),
   assert = require('assert'),
   argv = process.argv;
 
 assert.equal(argv.length, 4, 'Usage: po2json <input_file.po> <output_file.json>');
 
-po2json.parse(argv[2], { stringify: true }, function (err, result) {
-	stream = fs.createWriteStream(argv[3], {});
-    stream.write(result);
-});
+var result = po2json.parseFileSync(argv[2], { stringify: true }),
+    stream = fs.createWriteStream(argv[3], {});
+
+stream.write(result);
