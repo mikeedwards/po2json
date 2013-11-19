@@ -1,3 +1,19 @@
+0.2.0 / 2013-11-08
+==================
+
+**NB! This release is NOT backwards-compatible!** It has the following **braking changes**:
+
+ * `po2json.parse_po` has been replaced with `po2json.parse`
+ * `po2json.parse` has been replaced with `po2json.parseFile`
+ * `po2json.parseSync` has been replaced with `po2json.parseFileSync`
+ 
+Other changes in this release:
+
+  * The library has been competely rewritten, it now uses the [gettext-parser](https://github.com/andris9/gettext-parser) module to parse PO files. (Illimar Tambek)
+  * Tests have been completely rewritten (Illimar Tambek)
+  * Fixed issue with double-escaping quotes (Illimar Tambek)
+  * Option to skip/include fuzzy translations (Illimar Tambek)
+
 
 0.0.7 / 2012-10-26 
 ==================

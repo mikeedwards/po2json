@@ -1,7 +1,7 @@
 {
   "name": "po2json",
-  "description": "Pure Javascript implementation of Uniforum message translation. Based on a great gist.",
-  "version": "0.0.6",
+  "description": "Convert PO files to JSON",
+  "version": "0.2.0",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -19,6 +19,10 @@
     {
       "name": "Mike Edwards",
       "email": "michael.edwards@huffingtonpost.com"
+    },
+    {
+      "name": "Illimar Tambek",
+      "email": "illimar@sliptree.com"
     }
   ],
   "repository": {
@@ -42,10 +46,19 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "nodeunit test/"
   },
   "devDependencies": {
-    "grunt": "~0.3.16"
+    "nodeunit": "*"
   },
-  "keywords": []
+  "keywords": [
+    "i18n",
+    "l10n",
+    "gettext",
+    "po"
+  ],
+  "dependencies": {
+    "lodash": "~2.2.1",
+    "gettext-parser": "~0.1.9"
+  }
 }
