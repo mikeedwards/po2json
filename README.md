@@ -75,6 +75,14 @@ try {
 } catch (e) {}
 ```
 
+### Parse a PO file to Jed format:
+var po2json = require('po2json'),
+    Jed = rewuire('jed');
+po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
+    var i18n = new Jed( jsonData );
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
