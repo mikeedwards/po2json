@@ -28,6 +28,8 @@ Parse a PO buffer to JSON
 		* `fuzzy` Whether to include fuzzt translation in JSON or not. Should be either 		`true` or `false`. Defaults to `false`.
 		* `stringify` If `true`, returns a JSON string. Otherwise returns a plain 		Javascript object. Defaults to `false`.
 		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no 		effect when `stringify` is `false`. Defaults to `false`
+    * `format` - either `raw` or `jed`. `raw` produces a "raw" JSON output, while `jed` produces an output that is 100% compatible with Jed. Defaults to `raw`
+    * `domain` - the domain the messages will be wrapped inside. Only has effect if `format: 'jed'`.
 
 Parse a PO file to JSON
 

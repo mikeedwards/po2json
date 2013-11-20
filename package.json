@@ -49,7 +49,8 @@
     "test": "nodeunit test/"
   },
   "devDependencies": {
-    "nodeunit": "*"
+    "nodeunit": "*",
+    "jed": "~0.5.4"
   },
   "keywords": [
     "i18n",
