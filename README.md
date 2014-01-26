@@ -75,10 +75,10 @@ try {
 } catch (e) {}
 ```
 
-### Parse a PO file to Jed format:
+### Parse a PO file to Jed format
 ```javascript
 var po2json = require('po2json'),
-    Jed = rewuire('jed');
+    Jed = require('jed');
 po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
     var i18n = new Jed( jsonData );
 });
