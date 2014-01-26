@@ -59,7 +59,7 @@
     "po"
   ],
   "dependencies": {
-    "lodash": "~2.2.1",
+    "lodash": "~2.4.1",
     "gettext-parser": "~0.2.0"
   }
 }
