@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Convert PO files to JSON",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
