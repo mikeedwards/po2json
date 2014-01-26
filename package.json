@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Convert PO files to JSON",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -59,7 +59,7 @@
     "po"
   ],
   "dependencies": {
-    "lodash": "~2.2.1",
+    "lodash": "~2.4.1",
     "gettext-parser": "~0.2.0"
   }
 }
