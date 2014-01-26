@@ -12,7 +12,9 @@ var po2json = require('po2json');
 ```
 
 ### As an executable
-```po2json translation.po translation.json```
+```
+po2json translation.po translation.json
+```
 
 ## Documentation
 
