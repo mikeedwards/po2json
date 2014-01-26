@@ -1,6 +1,11 @@
-# po2json
+# po2json <sup>[![Version Badge](http://vb.teelaun.ch/mikeedwards/po2json.svg)](https://npmjs.org/package/po2json)</sup>
 
 [![Build Status](https://secure.travis-ci.org/mikeedwards/po2json.png?branch=master)](http://travis-ci.org/mikeedwards/po2json)
+[![Dependency Status](https://david-dm.org/mikeedwards/po2json.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json)
+[![devDependency Status](https://david-dm.org/mikeedwards/po2json/dev-status.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json#info=devDependencies)
+
+[![NPM](https://nodei.co/npm/po2json.png)](https://nodei.co/npm/po2json/)
+
 Convert PO files to Javascript objects or JSON strings. The result is Jed-compatible.
 
 ## Getting Started
