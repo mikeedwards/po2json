@@ -88,10 +88,15 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.1 / 2014-01-26
+==================
+
+ * Raised minimum node version requirement to 0.8 
+
 0.2.0 / 2013-11-08
 ==================
 
-**NB! This release is NOT backwards-compatible!** It has the following **braking changes**:
+**NB! This release is NOT backwards-compatible!** It has the following **breaking changes**:
 
  * `po2json.parse_po` has been replaced with `po2json.parse`
  * `po2json.parse` has been replaced with `po2json.parseFile`
