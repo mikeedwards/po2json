@@ -76,6 +76,7 @@ try {
 ```
 
 ### Parse a PO file to Jed format:
+```javascript
 var po2json = require('po2json'),
     Jed = rewuire('jed');
 po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
