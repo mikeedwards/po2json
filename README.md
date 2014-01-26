@@ -96,10 +96,12 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.2.1 / 2014-01-26
+0.2.3 / 2014-01-26
 ==================
 
- * Raised minimum node version requirement to 0.8 
+ * Raised minimum node version requirement to 0.8
+ * Raised lodash version to ~2.4.1
+ * Clean up documentations
 
 0.2.0 / 2013-11-08
 ==================
