@@ -32,7 +32,7 @@ Parse a PO buffer to JSON
 * `po2json.parse(buf[, options])`
 	* `buf` - a _po_ file as a Buffer or an unicode string.
 	* `options` - an optional object with the following possible parameters:
-		* `fuzzy` Whether to include fuzzt translation in JSON or not. Should be either 		`true` or `false`. Defaults to `false`.
+		* `fuzzy` Whether to include fuzzy translation in JSON or not. Should be either 		`true` or `false`. Defaults to `false`.
 		* `stringify` If `true`, returns a JSON string. Otherwise returns a plain 		Javascript object. Defaults to `false`.
 		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no 		effect when `stringify` is `false`. Defaults to `false`
     * `format` - either `raw` or `jed`. `raw` produces a "raw" JSON output, while `jed` produces an output that is 100% compatible with Jed. Defaults to `raw`
