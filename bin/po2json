@@ -5,9 +5,45 @@ var po2json = require('../'),
   assert = require('assert'),
   argv = process.argv;
 
-assert.equal(argv.length, 4, 'Usage: po2json <input_file.po> <output_file.json>');
+var opts = require("nomnom")
+  .script('po2json')
+  .option('pretty', {
+    abbr: 'p',
+    flag: true,
+    help: 'pretty-print JSON'
+  })
+  .option('fuzzy', {
+    abbr: 'F',
+    flag: true,
+    help: 'include fuzzy messages'
+  })
+  .option('format', {
+    abbr: 'f',
+    default: 'raw',
+    help: 'output format, one of: raw, jed, mf (messageformat)'
+  })
+  .option('domain', {
+    abbr: 'd',
+    default: 'messages',
+    help: 'domain'
+  })
+  .option('input', {
+    position: 0,
+    required: true,
+    list: false,
+    help: 'input file'
+  })
+  .option('output', {
+    position: 1,
+    required: true,
+    list: false,
+    help: 'output file'
+  })
+  .parse();
 
-var result = po2json.parseFileSync(argv[2], { stringify: true }),
-    stream = fs.createWriteStream(argv[3], {});
+opts.stringify = true;
+
+var result = po2json.parseFileSync(opts.input, opts),
+    stream = fs.createWriteStream(opts.output, {});
 
 stream.write(result);
