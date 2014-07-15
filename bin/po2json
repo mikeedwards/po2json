@@ -27,6 +27,10 @@ var opts = require("nomnom")
     default: 'messages',
     help: 'domain'
   })
+  .option('fallback-to-msgid', {
+    flag: true,
+    help: 'Use msgid if translation is missing (nplurals must match)'
+  })
   .option('input', {
     position: 0,
     required: true,
