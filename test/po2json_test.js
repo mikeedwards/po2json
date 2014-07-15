@@ -31,6 +31,47 @@ module.exports["parse with Jed format"] = {
   }
 }
 
+module.exports["parse with MessageFormatter format"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl-mf.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-mf.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse with MessageFormatter format + fallback-to-msgid"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/en-empty.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/en-mf-fallback-to-msgid.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf', 'fallback-to-msgid': true });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse with fallback-to-msgid"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/en-empty.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/en-empty.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { 'fallback-to-msgid': true });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
 module.exports["parseFile"] = {
   setUp: function(callback){
     this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl.json", "utf-8"));
