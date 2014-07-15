@@ -12,7 +12,7 @@ Convert PO files to Javascript objects or JSON strings. The result is Jed-compat
 Install the module with: `npm install po2json`
 
 ### As a library
-```javascript
+```
 var po2json = require('po2json');
 ```
 
@@ -55,7 +55,7 @@ Parse a PO file to JSON (synchronous)
 ## Examples
 
 ### Basic usage with PO data as a buffer/string
-```javascript
+```
 var po2json = require('po2json'),
     fs = require('fs');
 fs.readFile('messages.po', function (err, buffer) {
@@ -65,7 +65,7 @@ fs.readFile('messages.po', function (err, buffer) {
 ```
 
 ### Parse a PO file directly - Asynchronous Usage
-```javascript
+```
 var po2json = require('po2json');
 po2json.parseFile('messages.po', function (err, jsonData) {
     // do something interesting ...
@@ -73,7 +73,7 @@ po2json.parseFile('messages.po', function (err, jsonData) {
 ```
 
 ### Parse a PO file directly - Synchronous Usage
-```javascript
+```
 var po2json = require('po2json');
 var jsonData = '';
 try {
@@ -83,7 +83,7 @@ try {
 ```
 
 ### Parse a PO file to Jed format
-```javascript
+```
 var po2json = require('po2json'),
     Jed = require('jed');
 po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
@@ -96,15 +96,17 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.2.3 / 2014-01-26
-==================
+### 0.2.4 / 2014-07-15
+
+ * Fixed fuzzy flag (mahata) 
+
+### 0.2.3 / 2014-01-26
 
  * Raised minimum node version requirement to 0.8
  * Raised lodash version to ~2.4.1
  * Clean up documentations
 
-0.2.0 / 2013-11-08
-==================
+### 0.2.0 / 2013-11-08
 
 **NB! This release is NOT backwards-compatible!** It has the following **breaking changes**:
 
@@ -119,22 +121,19 @@ Other changes in this release:
   * Fixed issue with double-escaping quotes (Illimar Tambek)
   * Option to skip/include fuzzy translations (Illimar Tambek)
 
-0.0.7 / 2012-10-26 
-==================
+### 0.0.7 / 2012-10-26 
 
   * Fixed linting bugs and added a better fr.po fixture (Mike Edwards)
   * Add tests for po2json.parse and po2json.parseSync (Dan MacTough)
   * updated README.md with version history (Mike Edwards)
   * updated history (Mike Edwards)
 
-0.0.6 / 2012-10-22 
-==================
+### 0.0.6 / 2012-10-22 
 
   * Add AUTHORS to identify contributors (Dan MacTough)
   * Update README with revision history and basic examples (Dan MacTough)
 
-0.0.5 / 2012-10-19
-==================
+### 0.0.5 / 2012-10-19
 
   * cut out fake README example from grunt boilerplate (Mike Edwards)
   * fixed README.md markdown (Mike Edwards)
@@ -143,21 +142,18 @@ Other changes in this release:
   * Added boilerplate using grunt init (Mike Edwards)
   * Changed exports.parse to use node's convetional error-first callback style. Added exports.parseSync for synchronous parsing. (Dan MacTough)
 
-0.0.4 / 2012-09-18
-==================
+### 0.0.4 / 2012-09-18
 
   * Properly escape linebreaks (Zach Carter)
   * Update package.json (Mike Edwards)
   * package.json: define main module (Asbjørn Sloth Tønnesen)
 
-0.0.2 / 2012-07-03
-==================
+### 0.0.2 / 2012-07-03
 
   * fix package, fix pretty print return, remove debug logs (gilles)
   * upped version (Mike Edwards)
 
-0.0.1 / 2012-06-06
-==================
+### 0.0.1 / 2012-06-06
 
   * Added build status to README (Mike Edwards)
   * Removed built=ints from the dependencies (Mike Edwards)
