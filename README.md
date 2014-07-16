@@ -51,6 +51,26 @@ Parse a PO file to JSON (synchronous)
 	* `fileName` - path to the po file
 	* `options` - same as for `po2json.parse`
 
+#### fallback-to-msgid
+If `fallback-to-msgid` is set, for those entries that would be omitted
+(fuzzy entries without the fuzzy flag) and for those that are empty,
+the msgid will be used as translation in the json file.
+If the entry is plural, msgid_plural will be used for msgstr[1].
+This means that this option makes sense only for those languages
+that have nplurals=2.
+
+### Command Line Arguments
+
+po2json in command-line parametrization support added to allow override
+default options.
+
+* --pretty, -p: same as pretty = true in function options
+* --fuzzy, -F:  same as fuzzy = true in function options
+* --format, -f: Output format (jed, raw or mf)
+* --domain, -d: same as domain in function options
+
+Note: `'format': 'mf'` means the json format used by messageFormatter in github.com/SlexAxton/messageformat.js
+This system does any pluralization within the string, so only msgstr[0] is used with these format, in a simple "key": "value" form.
 
 ## Examples
 
@@ -96,9 +116,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.3.0 / 2014-07-16
+ * Added command line flags for fuzzy, pretty, format, and domain (Szigetvári Áron)
+ * Deals with fallback-to-msgid for fuzzy entries without the fuzzy flag (Szigetvári Áron)
+
 ### 0.2.4 / 2014-07-15
 
- * Fixed fuzzy flag (mahata) 
+ * Fixed fuzzy flag (mahata)
 
 ### 0.2.3 / 2014-01-26
 
@@ -113,7 +137,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * `po2json.parse_po` has been replaced with `po2json.parse`
  * `po2json.parse` has been replaced with `po2json.parseFile`
  * `po2json.parseSync` has been replaced with `po2json.parseFileSync`
- 
+
 Other changes in this release:
 
   * The library has been competely rewritten, it now uses the [gettext-parser](https://github.com/andris9/gettext-parser) module to parse PO files. (Illimar Tambek)
@@ -121,14 +145,14 @@ Other changes in this release:
   * Fixed issue with double-escaping quotes (Illimar Tambek)
   * Option to skip/include fuzzy translations (Illimar Tambek)
 
-### 0.0.7 / 2012-10-26 
+### 0.0.7 / 2012-10-26
 
   * Fixed linting bugs and added a better fr.po fixture (Mike Edwards)
   * Add tests for po2json.parse and po2json.parseSync (Dan MacTough)
   * updated README.md with version history (Mike Edwards)
   * updated history (Mike Edwards)
 
-### 0.0.6 / 2012-10-22 
+### 0.0.6 / 2012-10-22
 
   * Add AUTHORS to identify contributors (Dan MacTough)
   * Update README with revision history and basic examples (Dan MacTough)
@@ -165,5 +189,5 @@ Other changes in this release:
   * Initial commit (Mike Edwards)
 
 ## License
-Copyright (c) 2012 Joshua I. Miller  
+Copyright (c) 2012 Joshua I. Miller
 Licensed under the GNU, Library, General, Public, License licenses.
