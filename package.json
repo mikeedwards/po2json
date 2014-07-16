@@ -64,6 +64,7 @@
   ],
   "dependencies": {
     "lodash": "~2.4.1",
+    "nomnom": "1.5.2",
     "gettext-parser": "~0.2.0"
   }
 }
