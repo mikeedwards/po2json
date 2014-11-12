@@ -13,28 +13,22 @@
       "language": "en"
    },
    "Hello, world!\n": [
-      null,
       "Hello, world!\n"
    ],
    "string context\u0004the contextual phrase": [
-      null,
       "the contextual phrase"
    ],
    "this is the first line\nthis is the next one\nbut this is the last\n": [
-      null,
       "this is the first line\nthis is the next one\nbut this is the last\n"
    ],
    "one product": [
-      "%d products",
       "one product",
       "%d products"
    ],
    "A sentence with \"quotation\" marks.": [
-      null,
       "A sentence with \"quotation\" marks."
    ],
    "A fuzzy translation": [
-      null,
       "A fuzzy translation"
    ]
 }
