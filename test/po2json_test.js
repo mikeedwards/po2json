@@ -29,7 +29,22 @@ module.exports["parse with Jed format"] = {
     test.doesNotThrow(function() { new Jed(parsed) }, Error)
     test.done();
   }
-}
+};
+
+module.exports["parse with Jed1.x format"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-jed1.x.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    test.deepEqual(parsed, this.json);
+    test.doesNotThrow(function() { new Jed(parsed) }, Error)
+    test.done();
+  }
+};
 
 module.exports["parse with MessageFormatter format"] = {
   setUp: function(callback){
