@@ -1,3 +1,24 @@
+0.4.0 / 2015-03-01
+==================
+ * Added Jed > 1.1.0 compatible format (Evan Moses)
+
+0.3.0 / 2014-07-16
+==================
+ * Added command line flags for fuzzy, pretty, format, and domain (Szigetvári Áron)
+ * Deals with fallback-to-msgid for fuzzy entries without the fuzzy flag (Szigetvári Áron)
+
+0.2.4 / 2014-07-15
+==================
+
+ * Fixed fuzzy flag (mahata)
+
+0.2.3 / 2014-01-26
+==================
+
+ * Raised minimum node version requirement to 0.8
+ * Raised lodash version to ~2.4.1
+ * Clean up documentations
+
 0.2.0 / 2013-11-08
 ==================
 
@@ -6,7 +27,7 @@
  * `po2json.parse_po` has been replaced with `po2json.parse`
  * `po2json.parse` has been replaced with `po2json.parseFile`
  * `po2json.parseSync` has been replaced with `po2json.parseFileSync`
- 
+
 Other changes in this release:
 
   * The library has been competely rewritten, it now uses the [gettext-parser](https://github.com/andris9/gettext-parser) module to parse PO files. (Illimar Tambek)
@@ -15,7 +36,7 @@ Other changes in this release:
   * Option to skip/include fuzzy translations (Illimar Tambek)
 
 
-0.0.7 / 2012-10-26 
+0.0.7 / 2012-10-26
 ==================
 
   * Fixed linting bugs and added a better fr.po fixture (Mike Edwards)
@@ -23,7 +44,7 @@ Other changes in this release:
   * updated README.md with version history (Mike Edwards)
   * updated history (Mike Edwards)
 
-0.0.6 / 2012-10-22 
+0.0.6 / 2012-10-22
 ==================
 
   * Add AUTHORS to identify contributors (Dan MacTough)
