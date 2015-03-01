@@ -1,3 +1,7 @@
+0.4.1 / 2015-03-01
+==================
+ * Updated Jed-format code and test to deal with the new plural form
+
 0.4.0 / 2015-03-01
 ==================
  * Added Jed > 1.1.0 compatible format (Evan Moses)
