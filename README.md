@@ -32,11 +32,15 @@ Parse a PO buffer to JSON
 * `po2json.parse(buf[, options])`
 	* `buf` - a _po_ file as a Buffer or an unicode string.
 	* `options` - an optional object with the following possible parameters:
-		* `fuzzy` Whether to include fuzzy translation in JSON or not. Should be either 		`true` or `false`. Defaults to `false`.
-		* `stringify` If `true`, returns a JSON string. Otherwise returns a plain 		Javascript object. Defaults to `false`.
-		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no 		effect when `stringify` is `false`. Defaults to `false`
-    * `format` - either `raw` or `jed` or `mf`. `raw` produces a "raw" JSON output, while `jed` produces an output that is 100% compatible with Jed. `mf` produces simple key:value output. Defaults to `raw`
-    * `domain` - the domain the messages will be wrapped inside. Only has effect if `format: 'jed'`.
+		* `fuzzy` Whether to include fuzzy translation in JSON or not. Should be either `true` or `false`. Defaults to `false`.
+		* `stringify` If `true`, returns a JSON string. Otherwise returns a plain Javascript object. Defaults to `false`.
+		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no effect when `stringify` is `false`. Defaults to `false`
+		* `format` Defaults to `raw`.
+			* `raw` produces a "raw" JSON output
+			* `jed` produces an output that is 100% compatible with Jed < 1.1.0
+			* `jed1.x` produces an output that is 100% compatible with Jed >= 1.1.0
+			* `mf` produces simple key:value output.
+		* `domain` - the domain the messages will be wrapped inside. Only has effect if `format: 'jed'`.
 
 Parse a PO file to JSON
 
@@ -115,6 +119,9 @@ po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+
+### 0.4.0 / 2015-03-01
+ * Added Jed > 1.1.0 compatible format (Evan Moses)
 
 ### 0.3.0 / 2014-07-16
  * Added command line flags for fuzzy, pretty, format, and domain (Szigetvári Áron)
