@@ -3,6 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/mikeedwards/po2json.png?branch=master)](http://travis-ci.org/mikeedwards/po2json)
 [![Dependency Status](https://david-dm.org/mikeedwards/po2json.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json)
 [![devDependency Status](https://david-dm.org/mikeedwards/po2json/dev-status.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json#info=devDependencies)
+[![Tips](https://img.shields.io/gratipay/Mike Edwards.svg)](https://gratipay.com/Mike Edwards/)
 
 [![NPM](https://nodei.co/npm/po2json.png)](https://nodei.co/npm/po2json/)
 
