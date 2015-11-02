@@ -25,7 +25,7 @@ po2json translation.po translation.json
 
 ### Methods
 
-po2json has 3 methods, all of which take exactly the same options. The main function is `parse` which actually does the parsing to JSON. The 2 others - `parseFile` and `parseFileSync` are convinience functions to directly read PO data from a file and convert it to JSON.
+po2json has 3 methods, all of which take exactly the same options. The main function is `parse` which actually does the parsing to JSON. The 2 others - `parseFile` and `parseFileSync` are convenience functions to directly read PO data from a file and convert it to JSON.
 
 Parse a PO buffer to JSON
 
