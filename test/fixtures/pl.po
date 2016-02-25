@@ -49,3 +49,10 @@ msgstr "Zdanie w \"cudzysłowie\"."
 #, fuzzy
 msgid "A fuzzy translation"
 msgstr "Tłumaczenie rozmyta"
+
+#: test.js:7
+msgid "a product"
+msgid_plural "%d products"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""

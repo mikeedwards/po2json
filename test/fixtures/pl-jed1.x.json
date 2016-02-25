@@ -23,6 +23,11 @@
          ],
          "string context\u0004the contextual phrase": [
             "zwrot kontekstowe"
+         ],
+         "a product": [
+            "",
+            "%d products",
+            "%d products"
          ]
       }
    }
