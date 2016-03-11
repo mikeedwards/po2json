@@ -1,4 +1,4 @@
-# po2json 
+# po2json
 
 [![Build Status](https://secure.travis-ci.org/mikeedwards/po2json.png?branch=master)](http://travis-ci.org/mikeedwards/po2json)
 [![Dependency Status](https://david-dm.org/mikeedwards/po2json.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json)
@@ -70,7 +70,7 @@ default options.
 
 * --pretty, -p: same as pretty = true in function options
 * --fuzzy, -F:  same as fuzzy = true in function options
-* --format, -f: Output format (jed, raw or mf)
+* --format, -f: Output format (raw, jed, jed1.x, or mf)
 * --domain, -d: same as domain in function options
 
 Note: `'format': 'mf'` means the json format used by messageFormatter in github.com/SlexAxton/messageformat.js
