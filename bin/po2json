@@ -20,7 +20,7 @@ var opts = require("nomnom")
   .option('format', {
     abbr: 'f',
     default: 'raw',
-    help: 'output format, one of: raw, jed, mf (messageformat)'
+    help: 'output format, one of: raw, jed, jed1.x, mf (messageformat)'
   })
   .option('domain', {
     abbr: 'd',
