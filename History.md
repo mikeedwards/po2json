@@ -1,3 +1,8 @@
+0.4.1 / 2016-04-13
+==================
+ * Updated documentation for Jed > 1.1.0
+ * Use msgid_plural when there is no translation
+
 0.4.1 / 2015-03-01
 ==================
  * Updated Jed-format code and test to deal with the new plural form
