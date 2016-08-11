@@ -114,3 +114,17 @@ module.exports["parseFileSync"] = {
     test.done();
   }
 }
+
+module.exports["parse with Plural-Forms == nplurals=1; plural=0;"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/ja.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/ja.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po);
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
