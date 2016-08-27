@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Convert PO files to JSON",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -30,6 +30,9 @@
     },
     {
       "name": "Szigetvári Áron"
+    },
+    {
+      "name": "rafalt-iRonin"
     }
   ],
   "repository": {
