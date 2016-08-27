@@ -117,7 +117,7 @@ po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
 
 ### Running tests
 ```
-nodeunit test/
+npm test
 ```
 
 ## Contributing
