@@ -128,3 +128,17 @@ module.exports["parse with Plural-Forms == nplurals=1; plural=0;"] = {
     test.done();
   }
 }
+
+module.exports["parse with no headers"] ={
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/en-no-header.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/en-no-header.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po);
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
