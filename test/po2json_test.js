@@ -129,6 +129,20 @@ module.exports["parse with Plural-Forms == nplurals=1; plural=0;"] = {
   }
 }
 
+module.exports["parse with Plural-Forms == nplurals=1; plural=0; and with Jed1.x format"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/ja.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/ja-jed1.x.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
 module.exports["parse with no headers"] ={
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/en-no-header.po");
