@@ -12,5 +12,6 @@
    },
    "♂ Male": [ null, "男性" ],
    "partner application": [ "partner applications", [ "パートナーアプリ" ] ],
-   "result": [ "results", [ "検索結果" ] ]
+   "result": [ "results", [ "検索結果" ] ],
+   "For %s person starting at %s": [ "For %s people starting at %s", ["For %1$s people starting at %2$s"] ]
 }
