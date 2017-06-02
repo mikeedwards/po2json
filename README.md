@@ -41,6 +41,9 @@ Parse a PO buffer to JSON
 			* `jed1.x` produces an output that is 100% compatible with Jed >= 1.1.0
 			* `mf` produces simple key:value output.
 		* `domain` - the domain the messages will be wrapped inside. Only has effect if `format: 'jed'`.
+		* `fallback-to-msgid` If `true`, for those entries that would be omitted (fuzzy entries without the fuzzy flag) and for those
+		that are empty, the msgid will be used as translation in the json file. If the entry is plural, msgid_plural will be used for
+		msgstr[1]. This means that this option makes sense only for those languages that have nplurals=2.
 
 Parse a PO file to JSON
 
@@ -54,14 +57,6 @@ Parse a PO file to JSON (synchronous)
 * `po2json.parseFileSync(fileName[, options])`
 	* `fileName` - path to the po file
 	* `options` - same as for `po2json.parse`
-
-#### fallback-to-msgid
-If `fallback-to-msgid` is set, for those entries that would be omitted
-(fuzzy entries without the fuzzy flag) and for those that are empty,
-the msgid will be used as translation in the json file.
-If the entry is plural, msgid_plural will be used for msgstr[1].
-This means that this option makes sense only for those languages
-that have nplurals=2.
 
 ### Command Line Arguments
 
