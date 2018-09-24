@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.12\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+msgid "No Internet Connection"
+msgstr "Sin conexión a internet"
+
+msgid "Internet Connection is Back"
+msgstr "La conexión a internet a vuelto"
+
+msgid "New item CREATED at"
+msgstr "Nuevo item creado en"
+
+msgid "Item SAVED to"
+msgstr "Item SAVED to"
+
+msgid "Item DELETED from"
+msgstr "Item eliminado de"
+
+msgid "Not found"
+msgstr "No encontrado"
+
+msgid "Error in"
+msgstr "Error en"
+
+msgid "This error has been reported to the Administrator with the ID:"
+msgstr "El error ha sido reportado al Administrador con la id:"

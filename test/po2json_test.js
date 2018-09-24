@@ -156,3 +156,31 @@ module.exports["parse with no headers"] ={
     test.done();
   }
 }
+
+module.exports["parse jed < 1.1.0 plurals correctly"] ={
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-plurals.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-plurals.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po);
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse jed >= 1.1.0 plurals correctly"] ={
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-plurals.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-plurals-jed1.x.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}

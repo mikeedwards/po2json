@@ -20,6 +20,10 @@ var po2json = require('po2json');
 ```
 po2json translation.po translation.json
 ```
+__If you are using Jed >= 1.1.0, be sure to specify that format specifically.__
+```
+po2json translation.po translation.json -f jed1.x
+```
 
 ## Documentation
 
@@ -82,6 +86,15 @@ fs.readFile('messages.po', function (err, buffer) {
   // do something interesting ...
 });
 ```
+__If you are using Jed >= 1.1.0, be sure to specify that format specifically.__
+```
+var po2json = require('po2json'),
+    fs = require('fs');
+fs.readFile('messages.po', function (err, buffer) {
+  var jsonData = po2json.parse(buffer, { format: 'jed1.x' });
+  // do something interesting ...
+});
+```
 
 ### Parse a PO file directly - Asynchronous Usage
 ```
@@ -101,11 +114,20 @@ try {
 } catch (e) {}
 ```
 
-### Parse a PO file to Jed format
+### Parse a PO file to old Jed format
 ```
 var po2json = require('po2json'),
     Jed = require('jed');
 po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
+    var i18n = new Jed( jsonData );
+});
+```
+
+### Parse a PO file to Jed >= 1.1.0 format
+```
+var po2json = require('po2json'),
+    Jed = require('jed');
+po2json.parseFile('messages.po', { format: 'jed1.x' }, function (err, jsonData) {
     var i18n = new Jed( jsonData );
 });
 ```
@@ -119,6 +141,19 @@ npm test
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+### 0.4.6 / 2018-09-24
+ * Add documentation and tests for different Jed versions.
+ * Updated dependencies.
+
+### 0.4.5 / 2016-10-13
+ * Fixed issue with jed 1.x and ja-JP pluralization.
+
+### 0.4.4 / 2016-08-29
+ * Fix parsing of .po files with no headers.
+
+### 0.4.3 / 2016-08-27
+ * Better support for plurals in languages like Japanese.
+
 ### 0.4.2 / 2015-04-13
  * Updated documentation for Jed > 1.1.0
  * Use msgid_plural when there is no translation
