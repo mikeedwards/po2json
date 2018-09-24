@@ -1,6 +1,7 @@
 var po2json = require(".."),
     fs = require("fs"),
-    Jed = require("jed");
+    Jed = require("jed"),
+    MessageFormat = require("messageformat");
 
 module.exports["parse"] = {
   setUp: function(callback){
@@ -16,7 +17,22 @@ module.exports["parse"] = {
   }
 }
 
-module.exports["parse with Jed format"] = {
+module.exports["parse with old Jed format"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-jedold.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'jedold' });
+    test.deepEqual(parsed, this.json);
+    test.doesNotThrow(function() { new Jed(parsed) }, Error)
+    test.done();
+  }
+};
+
+module.exports["parse with current Jed format"] = {
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
     this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-jed.json", "utf-8"));
@@ -25,21 +41,6 @@ module.exports["parse with Jed format"] = {
 
   parse: function(test){
     var parsed = po2json.parse(this.po, { format: 'jed' });
-    test.deepEqual(parsed, this.json);
-    test.doesNotThrow(function() { new Jed(parsed) }, Error)
-    test.done();
-  }
-};
-
-module.exports["parse with Jed1.x format"] = {
-  setUp: function(callback){
-    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
-    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-jed1.x.json", "utf-8"));
-    callback();
-  },
-
-  parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
     test.deepEqual(parsed, this.json);
     test.doesNotThrow(function() { new Jed(parsed) }, Error)
     test.done();
@@ -60,6 +61,34 @@ module.exports["parse with MessageFormatter format"] = {
   }
 }
 
+module.exports["parse with MessageFormatter and compile successfully"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    callback();
+  },
+
+  parse: function(test){
+    var translations = po2json.parse(this.po, { format: 'mf' });
+    var f = function (n) {
+      return (n==1 ? 'p0' : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 'p1' : 'p2');
+    };
+    f.cardinal = [ 'p0', 'p1', 'p2' ];
+    var mf = new MessageFormat(
+      {
+        'pl': f
+      }
+    );
+    var messages = mf.compile(translations);
+    test.equal(messages['A sentence with "quotation" marks.']({}), "Zdanie w \"cudzysłowie\".");
+    test.equal(messages['one product']([1]), 'jeden produkt');
+    test.equal(messages['one product']([2]), '2 produkty');
+    test.equal(messages['one product']([12]), '12 produktów');
+    test.equal(messages['one product']([22]), '22 produkty');
+    test.equal(messages['string context']['the contextual phrase']({}), 'zwrot kontekstowe');
+    test.done();
+  }
+}
+
 module.exports["parse with full MessageFormatter format"] = {
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
@@ -68,7 +97,7 @@ module.exports["parse with full MessageFormatter format"] = {
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'mf', fullMf: true });
+    var parsed = po2json.parse(this.po, { format: 'mf', fullMF: true });
     test.deepEqual(parsed.headers, this.json.headers);
     test.deepEqual(parsed.translations, this.json.translations);
     test.done();
@@ -82,9 +111,31 @@ module.exports["parse with full MessageFormatter format and get plural function"
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'mf', fullMf: true });
+    var parsed = po2json.parse(this.po, { format: 'mf', fullMF: true });
     test.ok(parsed.pluralFunction);
     test.equal(typeof parsed.pluralFunction, 'function');
+    test.done();
+  }
+}
+
+module.exports["parse with full MessageFormatter and compile successfully"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf', fullMF: true });
+    var locale = {};
+    locale[parsed.headers.language] = parsed.pluralFunction;
+    var mf = new MessageFormat(locale);
+    var messages = mf.compile(parsed.translations);
+    test.equal(messages['']['A sentence with "quotation" marks.']({}), "Zdanie w \"cudzysłowie\".");
+    test.equal(messages['']['one product']([1]), 'jeden produkt');
+    test.equal(messages['']['one product']([2]), '2 produkty');
+    test.equal(messages['']['one product']([12]), '12 produktów');
+    test.equal(messages['']['one product']([22]), '22 produkty');
+    test.equal(messages['string context']['the contextual phrase']({}), 'zwrot kontekstowe');
     test.done();
   }
 }
@@ -158,15 +209,15 @@ module.exports["parse with Plural-Forms == nplurals=1; plural=0;"] = {
   }
 }
 
-module.exports["parse with Plural-Forms == nplurals=1; plural=0; and with Jed1.x format"] = {
+module.exports["parse with Plural-Forms == nplurals=1; plural=0; and with the current Jed format"] = {
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/ja.po");
-    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/ja-jed1.x.json", "utf-8"));
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/ja-jed.json", "utf-8"));
     callback();
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    var parsed = po2json.parse(this.po, { format: 'jed' });
     test.deepEqual(parsed, this.json);
     test.done();
   }
@@ -186,7 +237,7 @@ module.exports["parse with no headers"] ={
   }
 }
 
-module.exports["parse jed < 1.1.0 context correctly"] ={
+module.exports["parse raw JSON context correctly"] ={
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
     this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context.json", "utf-8"));
@@ -194,7 +245,21 @@ module.exports["parse jed < 1.1.0 context correctly"] ={
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po);
+    var parsed = po2json.parse(this.po, { format: 'raw' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse jed < 1.1.0 context correctly"] ={
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context-jedold.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'jedold' });
     test.deepEqual(parsed, this.json);
     test.done();
   }
@@ -203,12 +268,12 @@ module.exports["parse jed < 1.1.0 context correctly"] ={
 module.exports["parse jed >= 1.1.0 context correctly"] ={
   setUp: function(callback){
     this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
-    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context-jed1.x.json", "utf-8"));
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context-jed.json", "utf-8"));
     callback();
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    var parsed = po2json.parse(this.po, { format: 'jed' });
     test.deepEqual(parsed, this.json);
     test.done();
   }

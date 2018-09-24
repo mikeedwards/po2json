@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Convert PO files to JSON",
-  "version": "0.4.6",
+  "version": "1.0.0-alpha",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -63,8 +63,9 @@
     "test": "nodeunit test/"
   },
   "devDependencies": {
-    "nodeunit": "*",
-    "jed": "~1.1.1"
+    "jed": "~1.1.1",
+    "messageformat": "^2.0.4",
+    "nodeunit": "*"
   },
   "keywords": [
     "i18n",
@@ -73,8 +74,8 @@
     "po"
   ],
   "dependencies": {
+    "commander": "^2.18.0",
     "gettext-parser": "2.0.0",
-    "gettext-to-messageformat": "^0.3.0",
-    "nomnom": "1.8.1"
+    "gettext-to-messageformat": "^0.3.0"
   }
 }

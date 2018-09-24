@@ -41,8 +41,8 @@ Parse a PO buffer to JSON
 		* `pretty` If `true`, the resulting JSON string will be pretty-printed. Has no effect when `stringify` is `false`. Defaults to `false`
 		* `format` Defaults to `raw`.
 			* `raw` produces a "raw" JSON output
-			* `jed` produces an output that is 100% compatible with Jed < 1.1.0
-			* `jed1.x` produces an output that is 100% compatible with Jed >= 1.1.0
+			* `jed` produces an output that is 100% compatible with Jed >= 1.1.0
+			* `jedold` produces an output that is 100% compatible with Jed < 1.1.0
 			* `mf` produces simple key:value output.
 		* `domain` - the domain the messages will be wrapped inside. Only has effect if `format: 'jed'`.
 		* `fallback-to-msgid` If `true`, for those entries that would be omitted (fuzzy entries without the fuzzy flag) and for those
@@ -69,11 +69,13 @@ default options.
 
 * --pretty, -p: same as pretty = true in function options
 * --fuzzy, -F:  same as fuzzy = true in function options
-* --format, -f: Output format (raw, jed, jed1.x, or mf)
+* --format, -f: Output format (raw, jed, jedold, or mf)
+* --full-mf, -M: return full messageformat output (instead of only translations)
 * --domain, -d: same as domain in function options
+* --fallback-to-msgid': 'use msgid if translation is missing (nplurals must match)
 
 Note: `'format': 'mf'` means the json format used by messageFormatter in github.com/SlexAxton/messageformat.js
-This system does any pluralization within the string, so only msgstr[0] is used with these format, in a simple "key": "value" form.
+and `jedold` refers to Jed formats below 1.1.0
 
 ## Examples
 
@@ -83,15 +85,6 @@ var po2json = require('po2json'),
     fs = require('fs');
 fs.readFile('messages.po', function (err, buffer) {
   var jsonData = po2json.parse(buffer);
-  // do something interesting ...
-});
-```
-__If you are using Jed >= 1.1.0, be sure to specify that format specifically.__
-```
-var po2json = require('po2json'),
-    fs = require('fs');
-fs.readFile('messages.po', function (err, buffer) {
-  var jsonData = po2json.parse(buffer, { format: 'jed1.x' });
   // do something interesting ...
 });
 ```
@@ -114,7 +107,39 @@ try {
 } catch (e) {}
 ```
 
-### Parse a PO file to old Jed format
+### Parse a PO file to messageformat format
+```
+var po2json = require('po2json'),
+    MessageFormat = require('messageformat');
+
+po2json.parseFile('es.po', { format: 'mf' }, function (err, translations) {
+    var pFunc = function (n) {
+      return (n==1 ? 'p0' : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 'p1' : 'p2');
+    };
+    pFunc.cardinal = [ 'p0', 'p1', 'p2' ];
+    var mf = new MessageFormat(
+      {
+        'es': pFunc
+      }
+    );
+    var i18n = mf.compile( translations );
+});
+```
+
+### Parse a PO file to messageformat format using the full format
+```
+var po2json = require('po2json'),
+    MessageFormat = require('messageformat');
+
+po2json.parseFile('messages.po', { format: 'mf', fullMF: true }, function (err, jsonData) {
+    var mf = new MessageFormat(
+        { [jsonData.headers.language]: jsonData.pluralFunction }
+    );
+    var i18n = mf.compile( jsonData.translations );
+});
+```
+
+### Parse a PO file to Jed >= 1.1.0 format
 ```
 var po2json = require('po2json'),
     Jed = require('jed');
@@ -123,11 +148,12 @@ po2json.parseFile('messages.po', { format: 'jed' }, function (err, jsonData) {
 });
 ```
 
-### Parse a PO file to Jed >= 1.1.0 format
+### Parse a PO file to Jed < 1.1.0 format
+__If you are using an older version of Jed, be sure to specify this format specifically.__
 ```
 var po2json = require('po2json'),
     Jed = require('jed');
-po2json.parseFile('messages.po', { format: 'jed1.x' }, function (err, jsonData) {
+po2json.parseFile('messages.po', { format: 'jedold' }, function (err, jsonData) {
     var i18n = new Jed( jsonData );
 });
 ```
@@ -141,6 +167,12 @@ npm test
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+### 1.0.0 / 2018-09-24
+ * Updated dependencies.
+ * Replaced nomnom with commander.
+ * Switched formats values for Jed versions. `jed` now refers to versions >= 1.1.0.
+ * Added tests for MessageFormat compilation.
+
 ### 0.4.6 / 2018-09-24
  * Add documentation and tests for different Jed versions.
  * Updated dependencies.
