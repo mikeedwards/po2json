@@ -1,0 +1,47 @@
+{
+  "": {
+    "mime-version": "1.0",
+    "content-type": "text/plain; charset=UTF-8",
+    "content-transfer-encoding": "8bit",
+    "project-id-version": "",
+    "pot-creation-date": "",
+    "po-revision-date": "",
+    "language-team": "",
+    "x-generator": "Poedit 1.8.12",
+    "last-translator": "",
+    "plural-forms": "nplurals=2; plural=(n != 1);",
+    "language": "es"
+  },
+  "No Internet Connection": [
+    null,
+    "Sin conexión a internet"
+  ],
+  "Internet Connection is Back": [
+    null,
+    "La conexión a internet a vuelto"
+  ],
+  "New item CREATED at": [
+    null,
+    "Nuevo item creado en"
+  ],
+  "Item SAVED to": [
+    null,
+    "Item SAVED to"
+  ],
+  "Item DELETED from": [
+    null,
+    "Item eliminado de"
+  ],
+  "Not found": [
+    null,
+    "No encontrado"
+  ],
+  "errors\u0004Error in": [
+    null,
+    "Error en"
+  ],
+  "errors\u0004This error has been reported to the Administrator with the ID:": [
+    null,
+    "El error ha sido reportado al Administrador con la id:"
+  ]
+}

@@ -43,6 +43,12 @@ var opts = require("nomnom")
     list: false,
     help: 'output file'
   })
+  .option('fullMf', {
+    abbr: 'M',
+    full: 'full-mf',
+    flag: true,
+    help: 'return full messageformat output (instead of only translations)'
+  })
   .parse();
 
 opts.stringify = true;

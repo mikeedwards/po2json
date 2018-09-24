@@ -57,7 +57,7 @@
   },
   "main": "./lib/po2json",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=6.0"
   },
   "scripts": {
     "test": "nodeunit test/"
@@ -73,7 +73,8 @@
     "po"
   ],
   "dependencies": {
-    "nomnom": "1.8.1",
-    "gettext-parser": "2.0.0"
+    "gettext-parser": "2.0.0",
+    "gettext-to-messageformat": "^0.3.0",
+    "nomnom": "1.8.1"
   }
 }
