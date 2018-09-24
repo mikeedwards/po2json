@@ -2,58 +2,22 @@
 
 var po2json = require('../'),
 	fs = require('fs'),
-  assert = require('assert'),
-  argv = process.argv;
+  version = require('../package.json').version;
 
-var opts = require("nomnom")
-  .script('po2json')
-  .option('pretty', {
-    abbr: 'p',
-    flag: true,
-    help: 'pretty-print JSON'
-  })
-  .option('fuzzy', {
-    abbr: 'F',
-    flag: true,
-    help: 'include fuzzy messages'
-  })
-  .option('format', {
-    abbr: 'f',
-    default: 'raw',
-    help: 'output format, one of: raw, jed, jed1.x, mf (messageformat)'
-  })
-  .option('domain', {
-    abbr: 'd',
-    default: 'messages',
-    help: 'domain'
-  })
-  .option('fallback-to-msgid', {
-    flag: true,
-    help: 'Use msgid if translation is missing (nplurals must match)'
-  })
-  .option('input', {
-    position: 0,
-    required: true,
-    list: false,
-    help: 'input file'
-  })
-  .option('output', {
-    position: 1,
-    required: true,
-    list: false,
-    help: 'output file'
-  })
-  .option('fullMf', {
-    abbr: 'M',
-    full: 'full-mf',
-    flag: true,
-    help: 'return full messageformat output (instead of only translations)'
-  })
-  .parse();
+require("commander")
+  .version(version)
+  .arguments('<input> <output>')
+  .option('-p --pretty', 'pretty-print JSON')
+  .option('-F --fuzzy', 'include fuzzy messages')
+  .option('-f --format [format]', 'output format [raw, jed, jedold, mf]', 'raw')
+  .option('-M --full-mf', 'return full messageformat output (instead of only translations)')
+  .option('-d --domain [domain]', 'domain')
+  .option('--fallback-to-msgid', 'use msgid if translation is missing (nplurals must match)')
+  .action(function (input, output, options) {
+    options.stringify = true;
+    var result = po2json.parseFileSync(input, options),
+        stream = fs.createWriteStream(output, {});
 
-opts.stringify = true;
-
-var result = po2json.parseFileSync(opts.input, opts),
-    stream = fs.createWriteStream(opts.output, {});
-
-stream.write(result);
+    stream.write(result);
+  })
+  .parse(process.argv);
