@@ -30,8 +30,10 @@ msgstr "Item eliminado de"
 msgid "Not found"
 msgstr "No encontrado"
 
+msgctxt "errors"
 msgid "Error in"
 msgstr "Error en"
 
+msgctxt "errors"
 msgid "This error has been reported to the Administrator with the ID:"
 msgstr "El error ha sido reportado al Administrador con la id:"

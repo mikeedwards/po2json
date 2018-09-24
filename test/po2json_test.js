@@ -48,7 +48,7 @@ module.exports["parse with Jed1.x format"] = {
 
 module.exports["parse with MessageFormatter format"] = {
   setUp: function(callback){
-    this.po = fs.readFileSync(__dirname + "/fixtures/pl-mf.po");
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
     this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-mf.json", "utf-8"));
     callback();
   },
@@ -56,6 +56,35 @@ module.exports["parse with MessageFormatter format"] = {
   parse: function(test){
     var parsed = po2json.parse(this.po, { format: 'mf' });
     test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse with full MessageFormatter format"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/pl-mf-full.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf', fullMf: true });
+    test.deepEqual(parsed.headers, this.json.headers);
+    test.deepEqual(parsed.translations, this.json.translations);
+    test.done();
+  }
+}
+
+module.exports["parse with full MessageFormatter format and get plural function"] = {
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/pl.po");
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf', fullMf: true });
+    test.ok(parsed.pluralFunction);
+    test.equal(typeof parsed.pluralFunction, 'function');
     test.done();
   }
 }
@@ -157,10 +186,10 @@ module.exports["parse with no headers"] ={
   }
 }
 
-module.exports["parse jed < 1.1.0 plurals correctly"] ={
+module.exports["parse jed < 1.1.0 context correctly"] ={
   setUp: function(callback){
-    this.po = fs.readFileSync(__dirname + "/fixtures/es-plurals.po");
-    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-plurals.json", "utf-8"));
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context.json", "utf-8"));
     callback();
   },
 
@@ -171,15 +200,29 @@ module.exports["parse jed < 1.1.0 plurals correctly"] ={
   }
 }
 
-module.exports["parse jed >= 1.1.0 plurals correctly"] ={
+module.exports["parse jed >= 1.1.0 context correctly"] ={
   setUp: function(callback){
-    this.po = fs.readFileSync(__dirname + "/fixtures/es-plurals.po");
-    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-plurals-jed1.x.json", "utf-8"));
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context-jed1.x.json", "utf-8"));
     callback();
   },
 
   parse: function(test){
     var parsed = po2json.parse(this.po, { format: 'jed1.x' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}
+
+module.exports["parse mf context correctly"] ={
+  setUp: function(callback){
+    this.po = fs.readFileSync(__dirname + "/fixtures/es-context.po");
+    this.json = JSON.parse(fs.readFileSync(__dirname + "/fixtures/es-context-mf.json", "utf-8"));
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf' });
     test.deepEqual(parsed, this.json);
     test.done();
   }

@@ -3,7 +3,9 @@
     "this is the first line\nthis is the next one\nbut this is the last\n":
        "this is the first line\nthis is the next one\nbut this is the last\n",
     "A sentence with \"quotation\" marks.": "A sentence with \"quotation\" marks.",
-    "one product": "one product",
-    "string context\u0004the contextual phrase": "the contextual phrase",
+    "one product": "{0, plural, p0{one product} p1{{0} products} p2{{0} products}}",
+    "string context": {
+        "the contextual phrase": "the contextual phrase"
+    },
     "A fuzzy translation": "A fuzzy translation"
 }

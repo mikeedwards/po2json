@@ -73,7 +73,8 @@
     "po"
   ],
   "dependencies": {
-    "nomnom": "1.8.1",
-    "gettext-parser": "2.0.0"
+    "gettext-parser": "2.0.0",
+    "gettext-to-messageformat": "^0.3.0",
+    "nomnom": "1.8.1"
   }
 }

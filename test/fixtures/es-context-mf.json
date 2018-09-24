@@ -1,0 +1,12 @@
+{
+  "No Internet Connection": "Sin conexión a internet",
+  "Internet Connection is Back": "La conexión a internet a vuelto",
+  "New item CREATED at": "Nuevo item creado en",
+  "Item SAVED to": "Item SAVED to",
+  "Item DELETED from": "Item eliminado de",
+  "Not found": "No encontrado",
+  "errors": {
+    "Error in": "Error en",
+    "This error has been reported to the Administrator with the ID:": "El error ha sido reportado al Administrador con la id:"
+  }
+}
