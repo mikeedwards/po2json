@@ -292,3 +292,21 @@ module.exports["parse mf context correctly"] ={
     test.done();
   }
 }
+
+module.exports["handle braces in mf correctly"] ={
+  setUp: function(callback){
+    this.po = `
+      msgid "test"
+      msgstr "Hi %{firstname}"
+    `;
+    //this.json = JSON.parse(`{ "test": "Hi %\\\\{firstname\\\\}" }`);
+    this.json = JSON.parse(`{ "test": "Hi %{firstname}" }`);
+    callback();
+  },
+
+  parse: function(test){
+    var parsed = po2json.parse(this.po, { format: 'mf' });
+    test.deepEqual(parsed, this.json);
+    test.done();
+  }
+}

@@ -76,6 +76,6 @@
   "dependencies": {
     "commander": "^2.18.0",
     "gettext-parser": "2.0.0",
-    "gettext-to-messageformat": "^0.3.0"
+    "gettext-to-messageformat": "0.3.0"
   }
 }
