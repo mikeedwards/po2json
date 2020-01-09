@@ -293,7 +293,7 @@ module.exports["parse mf context correctly"] ={
   }
 }
 
-module.exports["handle braces in mf correctly"] ={
+module.exports["handle braces in mf with messageformat options"] ={
   setUp: function(callback){
     this.po = `
       msgid "test"
@@ -305,7 +305,29 @@ module.exports["handle braces in mf correctly"] ={
   },
 
   parse: function(test){
-    var parsed = po2json.parse(this.po, { format: 'mf' });
+    const mfOptions = {
+      replacements: [
+        {
+          pattern: /%(\d+)(?:\$\w)?/g,
+          replacement: (_, n) => `{${n - 1}}`
+        },
+        {
+          pattern: /%\((\w+)\)\w/g,
+          replacement: '{$1}'
+        },
+        {
+          pattern: /%\w/g,
+          replacement: function () { return `{${this.n++}}` },
+          state: { n: 0 }
+        },
+        {
+          pattern: /%%/g,
+          replacement: '%'
+        }
+      ]
+    };
+
+    var parsed = po2json.parse(this.po, { format: 'mf', mfOptions: mfOptions });
     test.deepEqual(parsed, this.json);
     test.done();
   }

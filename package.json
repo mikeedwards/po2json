@@ -48,7 +48,7 @@
   },
   "licenses": [
     {
-      "type": "GNU Library General Public License",
+      "type": "LGPL-2.0-or-later",
       "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html"
     }
   ],
