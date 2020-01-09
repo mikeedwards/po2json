@@ -46,12 +46,7 @@
   "bugs": {
     "url": "https://github.com/mikeedwards/po2json/issues"
   },
-  "licenses": [
-    {
-      "type": "LGPL-2.0-or-later",
-      "url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html"
-    }
-  ],
+  "license": "(LGPL-2.0-or-later)",
   "bin": {
     "po2json": "bin/po2json"
   },
@@ -74,6 +69,11 @@
     "po"
   ],
   "dependencies": {
+    "commander": "^2.18.0",
+    "gettext-parser": "2.0.0",
+    "gettext-to-messageformat": "0.3.0"
+  },
+  "peerDependencies": {
     "commander": "^2.18.0",
     "gettext-parser": "2.0.0",
     "gettext-to-messageformat": "0.3.0"
