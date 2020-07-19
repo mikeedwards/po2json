@@ -59,8 +59,8 @@
   },
   "devDependencies": {
     "jed": "~1.1.1",
-    "messageformat": "^2.0.4",
-    "nodeunit": "*"
+    "messageformat": "^2.3.0",
+    "nodeunit": "^0.11.3"
   },
   "keywords": [
     "i18n",
@@ -69,12 +69,12 @@
     "po"
   ],
   "dependencies": {
-    "commander": "^2.18.0",
+    "commander": "^6.0.0",
     "gettext-parser": "2.0.0",
     "gettext-to-messageformat": "0.3.0"
   },
   "peerDependencies": {
-    "commander": "^2.18.0",
+    "commander": "^6.0.0",
     "gettext-parser": "2.0.0",
     "gettext-to-messageformat": "0.3.0"
   }

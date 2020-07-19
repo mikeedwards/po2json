@@ -4,8 +4,6 @@
 [![Dependency Status](https://david-dm.org/mikeedwards/po2json.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json)
 [![devDependency Status](https://david-dm.org/mikeedwards/po2json/dev-status.png?theme=shields.io)](https://david-dm.org/mikeedwards/po2json#info=devDependencies)
 
-[![NPM](https://nodei.co/npm/po2json.png)](https://nodei.co/npm/po2json/)
-
 Convert PO files to Javascript objects or JSON strings. The result is Jed-compatible.
 
 ## Getting Started
