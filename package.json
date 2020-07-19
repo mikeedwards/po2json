@@ -52,7 +52,7 @@
   },
   "main": "./lib/po2json",
   "engines": {
-    "node": ">=8.0"
+    "node": ">=10.0"
   },
   "scripts": {
     "test": "jest"
