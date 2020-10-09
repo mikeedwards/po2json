@@ -3,6 +3,7 @@
   "description": "Convert PO files to JSON",
   "version": "1.0.0-beta-3",
   "homepage": "https://github.com/mikeedwards/po2json",
+  "licence": "GNU General Public License",
   "author": {
     "name": "Joshua I. Miller",
     "email": "unrtst@cpan.org"
