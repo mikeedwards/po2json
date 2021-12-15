@@ -69,7 +69,7 @@
   ],
   "dependencies": {
     "commander": "^6.0.0",
-    "gettext-parser": "2.0.0",
+    "gettext-parser": "^3.1.1",
     "gettext-to-messageformat": "0.3.1"
   },
   "peerDependencies": {
