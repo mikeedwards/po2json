@@ -1,14 +1,14 @@
 {
    "": {
-     "project-id-version": "VERSION",
-     "po-revision-date": "2016-08-08 14:08+0000",
-     "last-translator": "FULL NAME <EMAIL@ADDRESS>",
-     "language-team": "LANGUAGE TEAM <EMAIL@ADDRESS>",
-     "language": "ja",
-     "mime-version": "1.0",
-     "content-type": "text/plain; charset=UTF-8",
-     "content-transfer-encoding": "8bit",
-     "plural-forms": "nplurals=1; plural=0;"
+     "Project-Id-Version": "VERSION",
+     "PO-Revision-Date": "2016-08-08 14:08+0000",
+     "Last-Translator": "FULL NAME <EMAIL@ADDRESS>",
+     "Language-Team": "LANGUAGE TEAM <EMAIL@ADDRESS>",
+     "Language": "ja",
+     "MIME-Version": "1.0",
+     "Content-Type": "text/plain; charset=UTF-8",
+     "Content-Transfer-Encoding": "8bit",
+     "Plural-Forms": "nplurals=1; plural=0;"
    },
    "♂ Male": [ null, "男性" ],
    "partner application": [ "partner applications", [ "パートナーアプリ" ] ],
