@@ -46,6 +46,26 @@ Parse a PO buffer to JSON
 		* `fallback-to-msgid` If `true`, for those entries that would be omitted (fuzzy entries without the fuzzy flag) and for those
 		that are empty, the msgid will be used as translation in the json file. If the entry is plural, msgid_plural will be used for
 		msgstr[1]. This means that this option makes sense only for those languages that have nplurals=2.
+		* `mfOptions` Options handed to [gettext-to-messageformat](https://github.com/eemeli/gettext-to-messageformat). Only has
+		effect if `format: 'mf'`. Defaults to `{}`, anything given here wins over the options po2json sets itself.
+		* `escape-params` Whether `{`, `}`, `#` and `\` are escaped so that MessageFormat reads them as literals. Set it to
+		`false` to write a `{{error}}` placeholder out as-is instead of `\{\{error\}\}`. Only has effect if `format: 'mf'`.
+		Defaults to `true`. Turn it off for consumers that read the JSON as plain strings and use braces for their own
+		translation parameters, such as [ngx-translate](https://github.com/ngx-translate/core).
+
+#### Braces, hashes and backslashes (`format: 'mf'`)
+
+gettext-to-messageformat escapes `{`, `}`, `#` and `\` so that MessageFormat reads them as literals, which turns a
+`{{error}}` placeholder into `\{\{error\}\}` (issue #77). `escape-params: false` drops that one rule while keeping the `%s`,
+`%d`, `%(name)s` and `%%` conversion:
+
+```
+po2json.parseFileSync('messages.po', { format: 'mf', 'escape-params': false });
+```
+
+Note that a literal `#` inside a plural is then read by MessageFormat as the plural number, so leave the escaping on when
+the JSON is handed to a MessageFormat compiler. The replacement list behind the option is exported as
+`po2json.mfReplacements` to build a list of your own from, for use with `mfOptions.replacements`.
 
 Parse a PO file to JSON
 
@@ -71,6 +91,7 @@ default options.
 * --full-mf, -M: return full messageformat output (instead of only translations)
 * --domain, -d: same as domain in function options
 * --fallback-to-msgid': 'use msgid if translation is missing (nplurals must match)
+* --no-escape-params: same as 'escape-params' = false in function options
 
 Note: `'format': 'mf'` means the json format used by messageFormatter in github.com/SlexAxton/messageformat.js
 and `jedold` refers to Jed formats below 1.1.0
@@ -106,28 +127,52 @@ try {
 ```
 
 ### Parse a PO file to messageformat format
+`messageformat@2` was renamed to [`@messageformat/core`](https://messageformat.github.io/), which
+compiles one message at a time instead of a whole object, so translations are walked by hand:
+
 ```
 var po2json = require('po2json'),
-    MessageFormat = require('messageformat');
+    MessageFormat = require('@messageformat/core');
+
+function compileAll(mf, translations) {
+    return Object.keys(translations).reduce(function (messages, key) {
+        var message = translations[key];
+        // nested objects are msgctxt contexts
+        messages[key] = typeof message === 'string' ? mf.compile(message) : compileAll(mf, message);
+        return messages;
+    }, {});
+}
 
 po2json.parseFile('es.po', { format: 'mf' }, function (err, translations) {
-    var pFunc = function (n) {
+    var es = function (n) {
       return (n==1 ? 'p0' : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 'p1' : 'p2');
     };
-    pFunc.cardinal = [ 'p0', 'p1', 'p2' ];
-    var mf = new MessageFormat(
-      {
-        'es': pFunc
-      }
-    );
-    var i18n = mf.compile( translations );
+    es.cardinals = [ 'p0', 'p1', 'p2' ];
+    var mf = new MessageFormat(es);
+    var i18n = compileAll(mf, translations);
 });
 ```
+
+The locale is taken from the name of the plural function, so name it after the locale it describes.
 
 ### Parse a PO file to messageformat format using the full format
 ```
 var po2json = require('po2json'),
-    MessageFormat = require('messageformat');
+    MessageFormat = require('@messageformat/core');
+
+po2json.parseFile('messages.po', { format: 'mf', fullMF: true }, function (err, jsonData) {
+    var mf = new MessageFormat(jsonData.pluralFunction);
+    var i18n = compileAll(mf, jsonData.translations);
+});
+```
+
+#### Still on messageformat@2?
+The output is unchanged, only the calls into messageformat differ. `pluralFunction` carries both the
+`cardinal` (messageformat@2) and `cardinals` (`@messageformat/core`) plural category lists, so the
+legacy form keeps working:
+
+```
+var MessageFormat = require('messageformat');   // messageformat@2
 
 po2json.parseFile('messages.po', { format: 'mf', fullMF: true }, function (err, jsonData) {
     var mf = new MessageFormat(
@@ -136,6 +181,9 @@ po2json.parseFile('messages.po', { format: 'mf', fullMF: true }, function (err, 
     var i18n = mf.compile( jsonData.translations );
 });
 ```
+
+Note that `messageformat@4` is *not* a newer `messageformat@2`: it is a polyfill for the upcoming
+`Intl.MessageFormat` and does not read the format produced here.
 
 ### Parse a PO file to Jed >= 1.1.0 format
 ```
@@ -165,6 +213,25 @@ npm test
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
 
 ## Release History
+### 1.0.1 / 2026-07-23
+Dependency refresh, existing output is unchanged.
+
+ * Added the `escape-params` option (`--no-escape-params` on the command line). Set it to `false` to keep `{`, `}`, `#` and
+   `\` unescaped in `format: 'mf'`, so that a `{{error}}` placeholder is not written out as `\{\{error\}\}` (issue #77).
+   Escaping stays on by default, turning it off is meant for consumers reading the JSON as plain strings, such as
+   ngx-translate.
+ * Fixed the command line `--full-mf`/`-M` and `--fallback-to-msgid` flags, which reach `parse` again. commander
+   camel-cases dashed flags, so both had been silently ignored.
+ * Updated to gettext-parser 9, which is ESM only and needs node >= 20.19 to be `require`d. Its second argument became
+   an options object (`{defaultCharset}`), and it now reports header names in canonical case (`Plural-Forms`) which
+   po2json lower-cases again on the way out.
+ * Updated to gettext-to-messageformat 0.4, and `pluralFunction` now carries both `cardinal` and `cardinals` so it can
+   be handed to either messageformat generation.
+ * Fixed the executable against commander 15, which stopped exporting the program as the module itself.
+ * Documented `mfOptions`, and moved the messageformat examples to `@messageformat/core` (`messageformat@2` usage is
+   still documented, `messageformat@4` is an `Intl.MessageFormat` polyfill and does not read this format).
+ * Tests moved from jest 25 to jest 30 and from messageformat 2 to `@messageformat/core` 3.
+
 ### 1.0.0 / 2018-09-24
  * Updated dependencies.
  * Replaced nomnom with commander.

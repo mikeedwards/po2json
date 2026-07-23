@@ -1,7 +1,7 @@
 {
   "name": "po2json",
   "description": "Convert PO files to JSON",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "homepage": "https://github.com/mikeedwards/po2json",
   "author": {
     "name": "Joshua I. Miller",
@@ -50,16 +50,20 @@
   "bin": {
     "po2json": "bin/po2json"
   },
+  "main": "index.js",
   "engines": {
-    "node": ">=10.0"
+    "node": ">=24.13"
   },
   "scripts": {
-    "test": "jest"
+    "test": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "transform": {}
   },
   "devDependencies": {
-    "jed": "~1.1.1",
-    "jest": "^26.1.0",
-    "messageformat": "^2.3.0"
+    "@messageformat/core": "^3.4.0",
+    "jed": "^1.1.1",
+    "jest": "^30.4.2"
   },
   "keywords": [
     "i18n",
@@ -68,13 +72,8 @@
     "po"
   ],
   "dependencies": {
-    "commander": "^6.0.0",
-    "gettext-parser": "2.0.0",
-    "gettext-to-messageformat": "0.3.1"
-  },
-  "peerDependencies": {
-    "commander": "^6.0.0",
-    "gettext-parser": "2.0.0",
-    "gettext-to-messageformat": "0.3.1"
+    "commander": "^15.0.0",
+    "gettext-parser": "^9.1.1",
+    "gettext-to-messageformat": "^0.4.0"
   }
 }

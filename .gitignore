@@ -1,5 +1,51 @@
-node_modules
-npm-debug.log
+# Ingore bun and yarn locks
+bun.lockb
+yarn.lock 
 
-#IDEs
-.idea
+## Build
+.env
+dist/
+build/
+*.new.js
+*.old.js
+*.mo
+tmp/
+
+### General ###
+.DS_Store
+Thumbs.db
+report/
+out/
+temp/
+tmp/
+.tmp
+*.tmp
+*.tmp.*
+log.txt
+*.log
+*.*~
+nohup.out
+ 
+### SublimeText ###
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
+
+### Intellij IDE ###
+.idea/
+atlassian-ide-plugin.xml
+ 
+### VisualStudioCode ###
+.vscode/*
+.vscode-upload.json
+ 
+### TextMate ###
+*.tmproj
+*.tmproject
+tmtags
+ 
+### Node ###
+.nodemonignore
+npm-debug.log*
+.npmignore
+node_modules/
